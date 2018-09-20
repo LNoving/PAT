@@ -6,7 +6,7 @@ using namespace std;
 int m, n, in[10010], pre[10010], x, y;
 map<int,int> pos;
 bool check(int p, int q){
-    x = pos[p];   ///×¢Òâ£¬mapÖĞµÄÔªËØÄ¬ÈÏÎª0£»
+    x = pos[p];   ///æ³¨æ„ï¼Œmapä¸­çš„å…ƒç´ é»˜è®¤ä¸º0ï¼›
     y = pos[q];
     if(x == 0 && y == 0){
         cout << "ERROR: "<< p <<" and "<< q <<" are not found.";
