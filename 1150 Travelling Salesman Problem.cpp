@@ -50,8 +50,8 @@ int main(){
     printf("Shortest Dist(%d) = %d", minik, mini);
 }
 /**
- * ����ʱ��д�Ĵ��룬�߼��Ƚ��ң���ƴ���յģ������߼�û�����⡣���е�bug��������
- * һ��break�ϡ����breakֱ�ӵ����ҷ�������ο��ԡ�����ԭ�
+ * 考试时候写的代码，逻辑比较乱，东拼西凑的，但是逻辑没有问题。所有的bug都出在那
+ * 一个break上。这个break直接导致我放弃了这次考试。菜是原罪。
  * */
 /*
 #include <iostream>
@@ -95,7 +95,7 @@ int main(){
                 flag = 0;
             }
         }
-        if(nxt != start)flag = 0;    //û�����Ҳ�ܹ�
+        if(nxt != start)flag = 0;    //没有这句也能过
         ans[i][0] = tmpdis;
         ans[i][1] = flag;
         if(flag == 1 && nn > n + 1)ans[i][1] = -1;
