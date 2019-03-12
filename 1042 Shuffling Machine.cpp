@@ -1,5 +1,29 @@
+#include <cstdio>
+#include <vector>
+using namespace std;
+int main(){
+    vector<int> arr(55);
+    int n, sh[55];
+    scanf("%d", &n);
+    for(int i = 1; i <= 54; i++){
+        arr[i] = i;
+        scanf("%d", &sh[i]);
+    }
+    for(int i = 0; i < n; i++){
+        vector<int> temp(55);
+        for(int i = 1; i <= 54; i++)
+            temp[sh[i]] = arr[i];
+        arr = temp;
+    }
+    char s[] = "SHCDJ";
+    for(int i = 1; i <= 54; i++){
+        if(i != 1) printf(" ");
+        printf("%c%d", s[(arr[i] - 1) / 13], (arr[i] - 1) % 13 + 1);
+    }
+}
+
+/*  对比一下半年前的代码和现在的代码，看来努力还是有点用的吧。
 #include<iostream>
-#include<cstdio>
 using namespace std;
 int card[55], temp[55], result[55], n;
 void out(int i) {
@@ -49,3 +73,4 @@ int main() {
 	}
 	return 0;
 }
+*/

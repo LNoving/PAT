@@ -1,9 +1,42 @@
+/*第二遍训练*/
+#include <iostream>
+#include <algorithm>
+using namespace std;
+bool cmp(int a, int b){ return a > b;}
+int main(){
+    int n, m, dp[10010][201], arr[10010];
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++)
+        scanf("%d", &arr[i]);
+    sort(arr + 1, arr + n + 1, cmp);
+    fill(dp[0], dp[0] + 10010 * 201, -1);
+    dp[0][0] = 0;
+    for(int i = 1; i <= n; i++){
+        for(int j = 0; j <= m; j++){
+            dp[i][j] = dp[i - 1][j];
+            if(j >= arr[i] && dp[i - 1][j - arr[i]] != -1)  //关键点
+                dp[i][j] = j - arr[i];
+        }
+    }
+    if(dp[n][m] == -1){
+        printf("No Solution\n");
+        return 0;
+    }
+    int temp = m;
+    for(int i = n; i > 0; i--){
+        if(temp - arr[i] == dp[i][temp]){
+            if(temp != m) printf(" ");
+            printf("%d", arr[i]);
+            temp = dp[i][temp];
+        }
+    }
+}
 /***
  * 想这个问题想了一个多小时，dp还是练得太少。好不容易想清楚了，一动手写，全是些
  * 很低级的bug
- * 按照大佬的思路，先倒序然后dp。感觉正序或许也能得到答案。但是懒得去试了
- * 定义的时候把数组下标搞反了，然后二分法对着case debug了整整一个小时才找到问题。zz
+ * 按照大佬的思路，先倒序然后dp。正序的话会有替换最优解的问题，很麻烦。
  * */
+/*
 #include <cstdio>
 #include <algorithm>
 #include <vector>
@@ -51,3 +84,4 @@ int main(){
         }
     }
 }
+*/

@@ -5,18 +5,19 @@
  * */
 #include <iostream>
 #include <algorithm>
-#include <string>
 using namespace std;
 string strs[10001];
 int n;
 bool cmp(string a, string b){
+    // 这是我之前的做法最后一个case 19ms，用当前做法的话大概要60ms。不过显然当前做法要简洁得多。
+    /*
     for(int i = 0; i<min(a.length(), b.length()); i++){
         if(a[i] < b[i])return true;
         if(a[i] > b[i])return false;
     }
-    string c = a + b, d = b + a;
-    if (c == d)return true;
-    return cmp(c, d);
+    return a == b || cmp(a + b, b + a);
+    */
+    return a + b < b + a;
 }
 int main(){
     cin >> n;

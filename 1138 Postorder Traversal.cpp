@@ -1,7 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int pre[50001], in[50001], n;
+int post(int inl, int inr, int k){
+    if(inl > inr) return 0;
+    int i = inl;
+    while(in[i] != pre[k]) i++;
+    if(post(inl, i - 1, k + 1) == 1) return 1;
+    if(post(i + 1, inr, k + i - inl + 1) == 1) return 1;
+    cout << pre[k];
+    return 1;
+}
+int main(){
+    cin >> n;
+    for(int i = 0; i < n; i++)
+        scanf("%d", &pre[i]);
+    for(int i = 0; i < n; i++)
+        scanf("%d", &in[i]);
+    post(0, n - 1, 0);
+    return 0;
+}
+
 /***
  * 很久以前烧了两晚上脑袋想出来的解法。其实就是树的转换。还是要多学习现成的套路。
- * 不能光靠自己想
- */ 
+ * 不能光靠自己想。解法如下：
 #include <iostream>
 using namespace std;
 int inn[50000], pre[50000], nnn;
@@ -32,3 +54,5 @@ int findd(int p, int q, int a) {
 	else
 		return findd(p, i-1, a + 1);
 }
+
+*/

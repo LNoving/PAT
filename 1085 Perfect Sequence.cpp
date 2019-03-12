@@ -1,36 +1,32 @@
-/**
- * 最近状态真的差。脑子被堵住了感觉。感觉是因为这个假期没有和小姐姐浪浪
- * */
+//p应该用long来存储，否则最后一个case过不去。
 #include <iostream>
 #include <algorithm>
 using namespace std;
-long int n, p, arr[100010];
-int dich(long int k, int a, int b){
-    int i = (a + b)/2;
-    while(a != b){
-        if(arr[i] <= k && arr[i + 1] > k)return i;
-        if(arr[i] < k)
-            a = i + 1;
-        else if (arr[i] > k)
-            b = i;
-        else
-            a = i;
-        i = (a + b) / 2;
-    }
-    return a;
-}
 int main(){
+    int n, arr[100010], ans = 0;
+    long p;
     cin >> n >> p;
-    long int mx = 0;
-    for(int i = 0; i < n; i++){
-        cin >> arr[i];
-    }
+    for(int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
     sort(arr, arr + n);
-    int ans = 0;
     for(int i = 0; i < n; i++){
-        if(dich(arr[i] * p, i, n - 1) - i + 1> ans)
-            ans = dich(arr[i] * p, i, n - 1) - i + 1;
-        if(i + ans > n)break;
+        //二分法的库函数。和下面的代码效果一样
+        ans = max((int)(upper_bound(arr + i, arr + n, arr[i] * p) - (arr + i)), ans);
+        /*
+        int l = i + ans, r = n - 1;
+        if(l > n - 1)
+            break;
+        while(l < r){
+            int mid = (l + r + 1) / 2;
+            if(arr[mid] > arr[i] * p)
+                r = mid - 1;
+            else
+                l = mid;
+        }
+        if(arr[l] <= arr[i] * p && l - i + 1> ans)
+            ans = l - i + 1;
+        */
     }
     cout << ans;
+    return 0;
 }
